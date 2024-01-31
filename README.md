@@ -7,12 +7,31 @@ A project involving auto-generation of YouTube playlists based on AI-curated cur
 ## Table of Contents
 
 - [Why Use It](#why-use-it)
+- [Technology Stack](#technology-stack)
 - [How to Use](#how-to-use)
 - [Contribute](#contribute)
+- [License](#license)
 
 ## Why Use It
 
 We all value time and the pursuit of continuous improvement and learning. To perform better and learn skills even faster, we offer cutting-edge technologies at your fingertips. Try it for yourself and see if this tool makes a difference for you. If not, please let us know. We value your opinion and are always striving to improve.
+
+## Technology Stack
+
+### Frontend
+- React
+- TypeScript
+- Redux
+- React Routing
+
+### Backend
+- TypeScript
+- MongoDB
+- Express
+
+### DevOps
+- Docker
+- AWS
 
 ## How to Use
 
@@ -47,6 +66,8 @@ We welcome contributions from the community! If you'd like to contribute to uPor
 5. Submit a pull request to the main repository.
 
 Please ensure that your code adheres to the project's coding standards and includes appropriate tests. Also, make sure to update the documentation as needed.
+
+
 
 ## License
 
