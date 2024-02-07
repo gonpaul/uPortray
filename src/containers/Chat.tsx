@@ -9,7 +9,8 @@ const MessageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 48px 60px 48px 0;
+  height: 100%;
+  padding: 0px 60px 0px 0px;
 
   @media (max-width: 991px) {
     max-width: 100%;
@@ -21,7 +22,7 @@ const MessageInput = styled.div`
   display: flex;
   gap: 13px;
   width: 60%;
-  margin: 850px auto 0;
+  margin: 20px auto 0;
 
   @media (max-width: 991px) {
     max-width: 100%;

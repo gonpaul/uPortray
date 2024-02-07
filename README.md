@@ -25,6 +25,7 @@ We all value time and the pursuit of continuous improvement and learning. To per
 - React Routing
 
 ### Backend
+- Node
 - TypeScript
 - MongoDB
 - Express
