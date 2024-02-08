@@ -136,25 +136,35 @@ const ChatItem = styled.li`
 
 interface SidebarProps {
   onAddNewChat: () => void;
+  onToggleSidebar: () => void;
+  chats: { id: number, name: string, messages: string[] }[];
 }
 
 interface SidebarState {
-  chats: any[]; // replace any with the type of chat objects
 }
 
 class Sidebar extends Component<SidebarProps, SidebarState> {
+
   constructor(props: SidebarProps) {
     super(props);
     this.state = {
-      chats: [],
     };
   }
 
+
   render() {
+    const { chats } = this.props;
+    const ChatList = chats.map((chat) => {
+      return (
+        <ChatItem key={chat.id}>{chat.name}</ChatItem>
+      );
+    });
+
     return (
       <SidebarWrapper>
         <SidebarHead>
           <CloseSidebarIcon
+            onClick={this.props.onToggleSidebar}
             loading="lazy"
             srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&"/>
           <ButtonContainer onClick={this.props.onAddNewChat}>
@@ -169,9 +179,7 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
       </SidebarHead>
 
       <SidebarBody className='chatlist'>
-        <ChatItem>aaasdfasdfasd</ChatItem>
-        <ChatItem>asdf</ChatItem>
-        <ChatItem>aamerrryy me</ChatItem>
+        {ChatList}
       </SidebarBody>
 
       <SidebarTail>
