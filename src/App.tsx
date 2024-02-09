@@ -63,13 +63,26 @@ class App extends Component<Props, State> {
     });
   }
 
+  handleChatNameChange = (chatId: number, newName: string) => {
+    this.setState((prevState) => ({
+      chats: prevState.chats.map((chat) =>
+        chat.id === chatId ? { ...chat, name: newName } : chat
+      ),
+    }));
+  }
+
   render() {
     return (
       <>
         <Navbar />
         <MainContainer>
           {this.state.displaySidebar &&
-            <Sidebar onToggleSidebar={this.toggleSidebar} onAddNewChat={this.addNewChat} chats={this.state.chats}/>
+            <Sidebar 
+              onToggleSidebar={this.toggleSidebar} 
+              onAddNewChat={this.addNewChat} 
+              chats={this.state.chats}
+              onChatNameChange={this.handleChatNameChange}
+            />
           }
           <Chat />
         </MainContainer>

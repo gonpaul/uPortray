@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 import './Sidebar.css';
+import ChatItem from '../components/ChatItem.tsx';
 
 const SidebarWrapper = styled.div`
   border-radius: 2px;
@@ -41,6 +42,9 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   padding: 18px 60px;
 
+  &:hover {
+    cursor: pointer;
+  }
   @media (max-width: 991px) {
     padding: 0 20px;
   }
@@ -62,6 +66,10 @@ const SettingsContainer = styled.div`
   bottom: 20px;
   left: 20px;
 
+  &:hover {
+    cursor: pointer;
+  }
+  
   @media (max-width: 991px) {
     padding: 0 20px;
   }
@@ -120,23 +128,11 @@ const SidebarBody = styled.div`
   gap: 20px;
 `;
 
-const ChatItem = styled.li`
-  border-radius: 20px;
-  background-color: var(--ash-brown, #59473f);
-  padding: 18px 60px;
-  font-size: 18px;
-  list-style: none;
-  color: var(--light-grey, #ecebe9);
-
-  &:hover {
-    background-color: var(--morris-room-grey, #a59a8c);
-  }
-`;
-
 
 interface SidebarProps {
   onAddNewChat: () => void;
   onToggleSidebar: () => void;
+  onChatNameChange: (id: number, newName: string) => void;
   chats: { id: number, name: string, messages: string[] }[];
 }
 
@@ -156,7 +152,7 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
     const { chats } = this.props;
     const ChatList = chats.map((chat) => {
       return (
-        <ChatItem key={chat.id}>{chat.name}</ChatItem>
+        <ChatItem chat={chat} onChatNameChange={this.props.onChatNameChange} />
       );
     });
 
@@ -168,31 +164,31 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
             loading="lazy"
             srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/05ad417835b74e111a95b50b9a35eca585d84d0e3989e328675e821837c43986?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&"/>
           <ButtonContainer onClick={this.props.onAddNewChat}>
-          <ButtonGroup>
-            <AddChatIcon
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbf4b4dd7c0f6b27c541ad94c72fab20b913520841552621e0c45e4d06a86154?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&"
-            />
-            <SkillText>New chat</SkillText>
-          </ButtonGroup>
-        </ButtonContainer>
-      </SidebarHead>
+            <ButtonGroup>
+              <AddChatIcon
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbf4b4dd7c0f6b27c541ad94c72fab20b913520841552621e0c45e4d06a86154?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&"
+              />
+              <SkillText>New chat</SkillText>
+            </ButtonGroup>
+          </ButtonContainer>
+        </SidebarHead>
 
-      <SidebarBody className='chatlist'>
-        {ChatList}
-      </SidebarBody>
+        <SidebarBody className='chatlist'>
+          {ChatList}
+        </SidebarBody>
 
-      <SidebarTail>
-        <SettingsContainer>
-          <ButtonGroup>
-            <ActionLogo
-              loading="lazy"
-              srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&"/>
-            <ActionText>SETTINGS</ActionText>
-          </ButtonGroup>
-        </SettingsContainer>
-      </SidebarTail>
-    </SidebarWrapper>
+        <SidebarTail>
+          <SettingsContainer>
+            <ButtonGroup>
+              <ActionLogo
+                loading="lazy"
+                srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/cb15b44e2ce2969c1623333dbede78a4b4761d0b418442b3090edc038dc93192?apiKey=ccb9befcdd13446b89118ba9f6c19fb6&"/>
+              <ActionText>SETTINGS</ActionText>
+            </ButtonGroup>
+          </SettingsContainer>
+        </SidebarTail>
+      </SidebarWrapper>
     )
   };
 }
