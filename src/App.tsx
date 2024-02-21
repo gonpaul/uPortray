@@ -25,7 +25,7 @@ interface chat {
 
 interface State {
   chats: chat[];
-  displayNewChat: boolean;
+  // displayNewChat: boolean;
   currentChatId: number;
   displaySidebar: boolean;
 }
@@ -37,7 +37,7 @@ class App extends Component<Props, State> {
     super(props);
     this.state = {
       chats: [],
-      displayNewChat: false,
+      // displayNewChat: false,
       currentChatId: 0,
       displaySidebar: true,
     };

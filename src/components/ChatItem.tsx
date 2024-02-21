@@ -51,7 +51,6 @@ const ChatItem: React.FC<ChatItemProps> = ({ chat, onChatNameChange }) => {
           value={chatName}
           onChange={handleNameChange}
           onBlur={handleBlur}
-          autoFocus
         />
       ) : (
         <span>{chatName}</span>
