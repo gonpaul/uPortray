@@ -8,14 +8,17 @@ import styled from 'styled-components';
 const MainContainer = styled.div`
   width: 100%;
   height: calc(100% - 70px);
-  gap: 0px;
+  gap: 0px; 
   display: flex;
   flex-direction: row;
+  background-image: url('src/assets/white-crumpled-paper_full_hd.jpg') center/cover no-repeat;
 
   @media (max-width: 991px) {
     max-width: 100%;
   }
 `;
+
+
 
 interface chat {
   id: number;

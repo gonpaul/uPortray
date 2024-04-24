@@ -50,7 +50,7 @@ const ChatItem: React.FC<ChatItemProps> = ({ chat, onChatNameChange }) => {
           type="text"
           value={chatName}
           onChange={handleNameChange}
-          onBlur={handleBlur}
+          onBlur={handleBlur} 
         />
       ) : (
         <span>{chatName}</span>

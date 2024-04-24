@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import react, { Component } from 'react';
 import styled from 'styled-components';
 import './Sidebar.css';
 import ChatItem from '../components/ChatItem.tsx';

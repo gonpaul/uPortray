@@ -4,7 +4,8 @@ import styled from 'styled-components';
 const MessageContainer = styled.div`
   justify-content: center;
   align-items: center;
-  background-color: var(--morris-room-grey, #a59a8c);
+  // background-color: var(--morris-room-grey, #a59a8c);
+  background-image: url('src/assets/white-crumpled-paper_full_hd.jpg');
   flex-grow: 1;
   display: flex;
   flex-direction: column;
